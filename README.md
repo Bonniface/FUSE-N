@@ -1,90 +1,243 @@
-# Next + Netlify Starter
+# Hugo Serif Theme
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/46648482-644c-4c80-bafb-872057e51b6b/deploy-status)](https://app.netlify.com/sites/next-dev-starter/deploys)
+Serif is a modern business theme for Hugo. It contains multiple content types and pages. The theme is fully responsive, blazing fast and artfully illustrated.
 
-This is a [Next.js](https://nextjs.org/) v12 project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and set up to be instantly deployed to [Netlify](https://url.netlify.com/SyTBPVamO)!
+[Live Demo](https://hugo-serif.netlify.app/) |
+[Zerostatic Themes](https://www.zerostatic.io/)
 
-This project is a very minimal starter that includes 2 sample components, a global stylesheet, a `netlify.toml` for deployment, and a `jsconfig.json` for setting up absolute imports and aliases. With Netlify, you'll have access to features like Preview Mode, server-side rendering/incremental static regeneration via Netlify Functions, and internationalized routing on deploy automatically.
+![Hugo Serif Theme screenshot](https://www.zerostatic.io/theme/hugo-serif/hugo-serif-screenshot.png)
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/next-netlify-starter&utm_source=github&utm_medium=nextstarter-cs&utm_campaign=devex-cs)
+## Features
 
-(If you click this button, it will create a new repo for you that looks exactly like this one, and sets that repo up immediately for deployment on Netlify)
+**Content Types**
 
-## Table of Contents:
+- Services (Markdown)
+- Team (Markdown)
+- Features (Data)
 
-- [Getting Started](#getting-started)
-- [Installation options](#installation-options)
-- [Testing](#testing)
-  - [Included Default Testing](#included-default-testing)
-  - [Removing Renovate](#removing-renovate)
-  - [Removing Cypress](#removing-cypress)
+**CSS**
 
-## Getting Started
+- SCSS (Hugo Pipelines)
+- Fully Responsive design
+- Bootstrap 4 grid and media queries only
+- Uncomment `@import 'bootstrap/bootstrap';` in `style.scss` to use the entire Bootstrap framework
+- Configure Google fonts from `config.toml`
+- Configure primary theme colors from `config.toml`
+- Examples of using Params from the `config.toml` as SCSS variables
 
-First, run the development server:
+**Speed**
 
-```bash
-npm run dev
-# or
-yarn dev
+- 100/100 Google Lighthouse speed score
+- Under 50KB without images or 80KB with images and illustrations ⚡
+- No jQuery, only a tiny bit of vanilla Javascript for the mobile menu.
+
+**SEO**
+
+- 100/100 Google Lighthouse SEO score
+- 100/100 Google Lighthouse accessibility score
+- Configure Google Analytics in `config.toml`
+- Configure Google Analytics using env variable `HUGO_GOOGLE_ANALYTICS_ID` compatible with Netlify.
+- Configure meta tags and OG meta tags for the homepage in `config.toml`
+- Override any meta tags on a per page basis
+- Semantic HTML document structure
+
+**Menu**
+
+- Responsive menu managed in `config.toml`
+- Animated hamburger menu on mobile
+
+**Content**
+
+- Robust example content included
+- Royalty free illustrations included
+
+**Code**
+
+- No hardcoded content in the layouts
+- Plenty of examples of using `range` and `where` to loop over various sections/content types
+- Examples of `range` by Param
+- Examples of using data content _(`data/contact.yaml` and `data/features.json`)_
+- Example of passing .Site . (context) and custom variables to partials - see `layouts/page/contact.html` - `{{ partial "call.html" (dict "site" .Site "context" . "show_button" "false") }}`
+- Examples of injecting javascript files on a per page basis (see `services/single.html`)
+- Set `body` classes from individual layouts - useful for CSS styling.
+- Example of using Hugo custom `layout` for the contact page
+
+## Installation
+
+**1. Install Hugo**
+
+To use this theme you will first need to have Hugo installed. Please follow the official [installation guide](https://gohugo.io/getting-started/installing/)
+
+⚠️ **Note:** Check your Hugo version - **Hugo Extended** is required!
+
+This theme uses [Hugo Pipes](https://gohugo.io/hugo-pipes/scss-sass/) to compile SCSS and minify assets which means if you not using the Hugo extended version this theme will not work. To check your version of Hugo, run `hugo version`. Make sure you see **/extended** after the version number, for example _Hugo Static Site Generator v0.51/extended darwin/amd64 BuildDate: unknown_ You do not need to use version v0.51 specifically, it just needs to have the _/extended_ part.
+
+**2. Create a new Hugo site**
+
+This will create a fresh Hugo site in the folder `mynewsite`.
+
+```
+hugo new site mynewsite
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**3. Install the theme**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Download or git clone this theme into the sites themes folder `mynewsite/themes`. You should end up with the following folder structure `mynewsite/themes/hugo-serif-theme`
 
-### Installation options
-
-**Option one:** One-click deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/next-netlify-starter&utm_source=github&utm_medium=nextstarter-cs&utm_campaign=devex-cs)
-
-**Option two:** Manual clone
-
-1. Clone this repo: `git clone https://github.com/netlify-templates/next-netlify-starter.git`
-2. Navigate to the directory and run `npm install`
-3. Run `npm run dev`
-4. Make your changes
-5. Connect to [Netlify](https://url.netlify.com/Bk4UicocL) manually (the `netlify.toml` file is the one you'll need to make sure stays intact to make sure the export is done and pointed to the right stuff)
-
-## Testing
-
-### Included Default Testing
-
-We’ve included some tooling that helps us maintain these templates. This template currently uses:
-
-- [Renovate](https://www.mend.io/free-developer-tools/renovate/) - to regularly update our dependencies
-- [Cypress](https://www.cypress.io/) - to run tests against how the template runs in the browser
-- [Cypress Netlify Build Plugin](https://github.com/cypress-io/netlify-plugin-cypress) - to run our tests during our build process
-
-If your team is not interested in this tooling, you can remove them with ease!
-
-### Removing Renovate
-
-In order to keep our project up-to-date with dependencies we use a tool called [Renovate](https://github.com/marketplace/renovate). If you’re not interested in this tooling, delete the `renovate.json` file and commit that onto your main branch.
-
-### Removing Cypress
-
-For our testing, we use [Cypress](https://www.cypress.io/) for end-to-end testing. This makes sure that we can validate that our templates are rendering and displaying as we’d expect. By default, we have Cypress not generate deploy links if our tests don’t pass. If you’d like to keep Cypress and still generate the deploy links, go into your `netlify.toml` and delete the plugin configuration lines:
-
-```diff
-[[plugins]]
-  package = "netlify-plugin-cypress"
--  [plugins.inputs.postBuild]
--    enable = true
--
--  [plugins.inputs]
--    enable = false 
+```
+cd mynewsite
+git clone https://github.com/zerostaticthemes/hugo-serif-theme.git themes/hugo-serif-theme
 ```
 
-If you’d like to remove the `netlify-plugin-cypress` build plugin entirely, you’d need to delete the entire block above instead. And then make sure sure to remove the package from the dependencies using:
+**4. Copy the example content**
 
-```bash
-npm uninstall -D netlify-plugin-cypress
+Copy the entire contents of the `mynewsite/themes/hugo-serif-theme/exampleSite/` folder to root folder of your Hugo site, ie `mynewsite/`. To copy the files using terminal, make sure you are still in the projects root, ie the `mynewsite` folder.
+
+```
+cp -a themes/hugo-serif-theme/exampleSite/. .
 ```
 
-And lastly if you’d like to remove Cypress entirely, delete the entire `cypress` folder and the `cypress.config.ts` file. Then remove the dependency using:
+**6. Run Hugo**
 
-```bash
-npm uninstall -S cypress
+After installing the theme for the first time, generate the Hugo site.
+
+You run this command from the root folder of your Hugo site ie `mynewsite/`
+
 ```
+hugo
+```
+
+For local development run Hugo's built-in local server.
+
+```
+hugo server
+```
+
+Now enter [`localhost:1313`](http://localhost:1313) in the address bar of your browser.
+
+## Deployment
+
+### Netlify
+
+Use Netlify to deploy this theme. This theme contains a valid and tested `netlify.toml` - Feel free to use the 1-click deploy below.
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zerostaticthemes/hugo-serif-theme)
+
+## Configuring Theme
+
+### Logo
+
+You can edit the logo from the `config.toml`
+
+```toml
+# config.toml
+
+  [params.logo]
+    mobile = "images/logo/logo-mobile.svg"
+    mobile_height = "36px"
+    desktop = "images/logo/logo.svg"
+    desktop_height = "36px"
+    alt = "Serif - A Hugo Business Theme"
+```
+
+### Fonts
+
+This theme uses Google fonts. You can change the google font in the `config.toml` - These fonts are injected into the `style.scss` as SCSS variables.
+
+```toml
+# config.toml
+
+  [params.fonts]
+    # sets the google font link in layouts/partials/google-fonts.html
+    google_fonts = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Source+Sans+Pro:wght@400;700&display=swap'
+    heading = "Playfair Display"
+    base = "Source Sans Pro"
+```
+
+### Colors
+
+You can edit the themes main colors in the `config.toml`. These colors are injected into the `style.scss` as SCSS variables.
+
+```toml
+#config.toml
+
+  [params.colors]
+    primary = "#f24088"
+    black = "#2f2f41"
+    white = "#ffffff"
+    white_offset = "#f6f7ff"
+    grey = "#5C5A5A"
+```
+
+### Intro Image
+
+List pages such as the homepage, services and team can have a Intro image.
+
+```yml
+# content/_index.md
+---
+intro_image: "https://source.unsplash.com/wOGhHamMqLc"
+intro_image_absolute: false
+intro_image_hide_on_mobile: true
+---
+```
+
+While this themes default content uses illustrations, its easy to change the image to a photo and it will still look great.
+
+the front-matter field `intro_image_absolute: true` let's illustrations "break out" (in CSS terms, it uses `position: absolute`) of the grid and is an intended stylistic effect. When using photos or normal images it's recommended to set this field to false and the photo will align with the grid. See `content/team/_index.md` for an example.
+
+### Google Analytics
+
+Put your Google Analytics ID in the `google_analytics_id` field in the `config.toml` - Also supports Google Tag Manager. When your site is running locally using `hugo server` the GA tag is not injected. This prevents polluting your real data.
+
+```toml
+# config.toml
+
+[params]
+  google_analytics_id = "UA-XXX-1"
+  google_tag_manager_id = ""
+```
+
+You can also set the Google Analytics ID using a [Netlify environment variable](https://docs.netlify.com/configure-builds/environment-variables/) `HUGO_GOOGLE_ANALYTICS_ID`
+
+### Meta tags
+
+A pages `<title>` is generated from the front-matter `meta_title` else it will use the `title` property. This allows you to have a different heading on the page to what is shown in the SEO title. See `content/_index.md` for an example.
+
+The meta description field is generated from the front-matter `description`
+
+OG meta data for Facebook and Twitter is also generated on a per page basis. The `image` field is used for the og:image for Twitter and Facebook.
+
+You can configure og meta data global settings in the config.
+
+```toml
+# config.toml
+
+  [params.seo]
+    meta_twitter_site = "@zerostaticio"
+    meta_twitter_creator = "@zerostaticio"
+    meta_og_image = "https://www.zerostatic.io/theme/hugo-serif/hugo-serif-screenshot.png"
+```
+
+### License
+
+- Don't create ports of this theme without asking me
+- You can't re-distribute or re-sell this theme as your own template
+
+### Credits
+
+- Beautiful royalty free Illustrations by Icons8 - https://icons8.com/illustrations/style--pixeltrue
+- Stock images by Unsplash - https://unsplash.com/
+- Feature icons by Noun Project - https://thenounproject.com/
+
+### Other Hugo Themes by Zerostatic
+
+- [Hugo Hero](https://github.com/zerostaticthemes/hugo-serif-theme) - Open Source: business theme
+- [Hugo Whisper](https://github.com/zerostaticthemes/hugo-whisper-theme) - Open Source: documentation theme
+- [Hugo Winston](https://github.com/zerostaticthemes/hugo-winston-theme) Open Source:- blog theme
+- [Hugo Advance](https://www.zerostatic.io/theme/hugo-advance/) Premium: advanced multi page business and marketing theme
+- [Hugo Paradigm](https://www.zerostatic.io/theme/hugo-paradigm/) Premium: landing page / site builder theme
+
+🇦🇺 **Made in Australia** by Robert Austin - leave a star mate!
+
+<a href="https://www.buymeacoffee.com/zerostatic" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
